@@ -1,6 +1,55 @@
-# Getting Started with Create React App
+# Multi Clock App
+
+A React application for displaying multiple clocks.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## GitHub Pages Deployment
+
+This app is configured for deployment to GitHub Pages. Follow these steps:
+
+### Initial Setup
+
+1. **Update the homepage URL** in `package.json`:
+   - Replace `YOUR_USERNAME` with your GitHub username
+   - If your repository name is different from `multi-clock-app`, update that too
+   - The format should be: `https://yourusername.github.io/repository-name`
+
+2. **Ensure your code is pushed to GitHub**:
+   ```bash
+   git add .
+   git commit -m "Prepare for GitHub Pages deployment"
+   git push origin main
+   ```
+
+3. **Deploy to GitHub Pages**:
+   ```bash
+   npm run deploy
+   ```
+
+   This will:
+   - Build your app for production
+   - Create/update a `gh-pages` branch with the built files
+   - Push the branch to GitHub
+
+4. **Enable GitHub Pages in your repository settings**:
+   - Go to your repository on GitHub
+   - Click on **Settings** → **Pages**
+   - Under "Source", select the `gh-pages` branch
+   - Click **Save**
+
+5. **Access your app**:
+   - Your app will be available at: `https://yourusername.github.io/repository-name`
+   - It may take a few minutes for the changes to propagate
+
+### Subsequent Deployments
+
+After making changes to your app, simply run:
+```bash
+npm run deploy
+```
+
+This will rebuild and redeploy your app to GitHub Pages.
 
 ## Available Scripts
 

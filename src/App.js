@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Clock from "./Clock";
+import "./App.css";
 
 function App() {
+  const clocks = [
+    { city: "San Francisco", timezone: "America/Los_Angeles" },
+    { city: "New York", timezone: "America/New_York" },
+    { city: "Dublin", timezone: "Europe/Dublin" },
+    { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
+    { city: "Jakarta", timezone: "Asia/Jakarta" },
+    { city: "Tokyo", timezone: "Asia/Tokyo" },
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app-container">
+      <div className="clock-grid">
+        {clocks.map((c) => (
+          <Clock key={c.city} city={c.city} timezone={c.timezone} />
+        ))}
+      </div>
     </div>
   );
 }
