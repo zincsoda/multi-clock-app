@@ -1,41 +1,18 @@
 .clock-card {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 12px;
   padding: 2rem;
   text-align: center;
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-.clock-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: linear-gradient(90deg, 
-    rgba(120, 119, 198, 0.8) 0%, 
-    rgba(120, 119, 198, 0.4) 50%, 
-    rgba(120, 119, 198, 0.8) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 .clock-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
-}
-
-.clock-card:hover::before {
-  opacity: 1;
+  transform: translateY(-4px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
 }
 
 .clock-content {
@@ -44,40 +21,75 @@
 }
 
 .clock-city {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.2rem;
+  font-weight: 500;
   margin: 0 0 1.5rem 0;
-  color: #ffffff;
-  letter-spacing: 0.02em;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
 }
 
 .clock-time {
-  font-size: 2.5rem;
-  font-weight: 300;
+  font-size: 3rem;
+  font-weight: 700;
   margin: 0 0 0.75rem 0;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-  color: #ffffff;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.1em;
   transition: all 0.2s ease;
+  text-shadow: 0 0 5px currentColor;
+}
+
+/* Red LED - San Francisco */
+.clock-card:nth-child(1) .clock-time {
+  color: #ff0000;
+}
+
+/* Green LED - New York */
+.clock-card:nth-child(2) .clock-time {
+  color: #00ff00;
+}
+
+/* Blue LED - Dublin */
+.clock-card:nth-child(3) .clock-time {
+  color: #0080ff;
+}
+
+/* Amber/Yellow LED - Hong Kong */
+.clock-card:nth-child(4) .clock-time {
+  color: #ffaa00;
+}
+
+/* Cyan LED - Jakarta */
+.clock-card:nth-child(5) .clock-time {
+  color: #00ffff;
+}
+
+/* Magenta/Pink LED - Tokyo */
+.clock-card:nth-child(6) .clock-time {
+  color: #ff00ff;
 }
 
 .clock-date {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
   margin: 0 0 1rem 0;
   font-weight: 400;
   letter-spacing: 0.02em;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
 }
 
 .clock-timezone {
   display: inline-block;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.4rem 0.8rem;
-  border-radius: 12px;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
   font-weight: 400;
   letter-spacing: 0.05em;
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (max-width: 768px) {
@@ -86,7 +98,7 @@
   }
   
   .clock-city {
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin-bottom: 1rem;
   }
   
@@ -95,12 +107,12 @@
   }
   
   .clock-date {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
   }
   
   .clock-timezone {
-    font-size: 0.75rem;
-    padding: 0.3rem 0.6rem;
+    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
   }
 }
 
