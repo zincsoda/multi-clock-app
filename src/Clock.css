@@ -44,7 +44,7 @@
   text-shadow: 0 0 5px currentColor;
 }
 
-/* Red LED - San Francisco */
+/* Red LED - L.A. */
 .clock-card:nth-child(1) .clock-time {
   color: #ff0000;
 }
@@ -81,6 +81,10 @@
   font-weight: 400;
   letter-spacing: 0.02em;
   font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+}
+
+.clock-day {
+  color: #ffffff;
 }
 
 .clock-timezone {

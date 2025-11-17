@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   const clocks = [
-    { city: "San Francisco", timezone: "America/Los_Angeles" },
+    { city: "L.A.", timezone: "America/Los_Angeles" },
     { city: "New York", timezone: "America/New_York" },
     { city: "Dublin", timezone: "Europe/Dublin" },
     { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
