@@ -1,8 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders the clock cities', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+
+  expect(screen.getByText('L.A.')).toBeInTheDocument();
+  expect(screen.getByText('New York')).toBeInTheDocument();
+  expect(screen.getByText('Hong Kong')).toBeInTheDocument();
 });

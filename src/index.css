@@ -2,6 +2,8 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-snap-align: none !important;
+  scroll-snap-stop: normal !important;
 }
 
 *::before,
@@ -13,11 +15,14 @@ html {
   margin: 0 !important;
   padding: 0 !important;
   width: 100% !important;
-  height: 100% !important;
+  min-height: 100% !important;
   background: #000000 !important;
   background-color: #000000 !important;
   overflow-x: hidden;
+  overflow-y: auto;
   position: relative;
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
 }
 
 body {
@@ -31,9 +36,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  overflow-y: auto;
   background: #000000 !important;
   background-color: #000000 !important;
   position: relative;
+  scroll-behavior: auto !important;
+  scroll-snap-type: none !important;
 }
 
 #root {
@@ -46,6 +54,7 @@ body {
   background-color: #000000 !important;
   position: relative;
   overflow-x: hidden;
+  scroll-snap-type: none !important;
 }
 
 code {
