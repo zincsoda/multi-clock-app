@@ -3,10 +3,10 @@ import Clock from "./Clock";
 import "./App.css";
 
 const clocks = [
+  { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
   { city: "L.A.", timezone: "America/Los_Angeles" },
   { city: "New York", timezone: "America/New_York" },
   { city: "Dublin", timezone: "Europe/Dublin" },
-  { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
   { city: "Jakarta", timezone: "Asia/Jakarta" },
   { city: "Tokyo", timezone: "Asia/Tokyo" },
 ];
