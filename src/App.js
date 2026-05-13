@@ -7,8 +7,8 @@ const clocks = [
   { city: "New York", timezone: "America/New_York" },
   { city: "Dublin", timezone: "Europe/Dublin" },
   { city: "Jakarta", timezone: "Asia/Jakarta" },
-  { city: "Tokyo", timezone: "Asia/Tokyo" },
   { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
+  { city: "Tokyo", timezone: "Asia/Tokyo" },
 ];
 
 function App() {

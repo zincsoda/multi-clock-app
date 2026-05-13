@@ -9,11 +9,12 @@ test('renders the clock cities', () => {
   expect(screen.getByText('Hong Kong')).toBeInTheDocument();
 });
 
-test('lists Hong Kong last', () => {
+test('lists Hong Kong second to last', () => {
   render(<App />);
 
   const cityHeadings = screen.getAllByRole('heading', { level: 2 });
-  expect(cityHeadings[cityHeadings.length - 1]).toHaveTextContent('Hong Kong');
+  expect(cityHeadings[cityHeadings.length - 2]).toHaveTextContent('Hong Kong');
+  expect(cityHeadings[cityHeadings.length - 1]).toHaveTextContent('Tokyo');
 });
 
 test('lists cities in fixed order', () => {
@@ -25,7 +26,7 @@ test('lists cities in fixed order', () => {
     'New York',
     'Dublin',
     'Jakarta',
-    'Tokyo',
     'Hong Kong',
+    'Tokyo',
   ]);
 });
