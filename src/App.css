@@ -2,8 +2,8 @@
   min-height: 100vh;
   padding: clamp(0.75rem, 2vw, 1.5rem);
   box-sizing: border-box;
-  background: #ffc0cb !important;
-  background-color: #ffc0cb !important;
+  background: #2d1b4e !important;
+  background-color: #2d1b4e !important;
   position: relative;
   overflow-x: hidden;
   margin: 0;
