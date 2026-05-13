@@ -64,3 +64,15 @@ npm run deploy
 ```
 
 Keep **`homepage`** in `package.json` aligned with `https://<user>.github.io/<repo>/`.
+
+### Troubleshooting: site shows README or repo files
+
+That usually means GitHub is **not** serving the Actions build — it is serving **repository files** from a branch instead.
+
+1. Repo → **Settings** → **Pages** → **Build and deployment**.
+2. **Source** must be **GitHub Actions** only.  
+   If it says **Deploy from a branch** (e.g. `main` / `/ (root)` or `/docs`), GitHub may render **`README.md`** at the site URL instead of your built `index.html`. Switch to **GitHub Actions** and save.
+3. Open the **project** URL including the repo path, e.g. **`https://zincsoda.github.io/multi-clock-app/`** — not only `https://zincsoda.github.io/` (that is your **user** site, a different repo).
+4. Wait a minute after a green deploy, then hard-refresh (cache).
+
+After **Deploy GitHub Pages** succeeds, the workflow run summary should link the live site; that URL should match **`homepage`** in `package.json`.
