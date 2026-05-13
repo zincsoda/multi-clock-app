@@ -38,12 +38,12 @@ jobs:
         with:
           path: build
 
+  # No `environment: github-pages` here — that environment often restricts deploy
+  # branches (e.g. only gh-pages), which blocks deploys from main. Deploy still uses
+  # the workflow token + Pages permissions below.
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
