@@ -77,18 +77,20 @@ if [[ -n "$(git status --porcelain)" ]]; then
   exit 1
 fi
 
-# Use explicit `gh -R` when repo is set. Relying on GH_REPO alone is unreliable when
-# this script is launched via `npm run` (the variable may not reach the shell).
+# Select repo for gh: `gh repo view` takes OWNER/REPO as a positional argument (not -R).
+# `gh pr` commands accept --repo / -R after the subcommand.
 if [[ -n "${GH_REPO:-}" ]]; then
-  GH_R=( -R "$GH_REPO" )
+  GH_REPO_VIEW=( "$GH_REPO" )
+  GH_PR_REPO=( --repo "$GH_REPO" )
 else
-  GH_R=()
+  GH_REPO_VIEW=()
+  GH_PR_REPO=()
 fi
 
-REPO_SLUG="$(gh "${GH_R[@]}" repo view --json nameWithOwner -q .nameWithOwner)"
+REPO_SLUG="$(gh repo view "${GH_REPO_VIEW[@]}" --json nameWithOwner -q .nameWithOwner)"
 echo "Using GitHub repository: $REPO_SLUG"
 
-if ! gh "${GH_R[@]}" pr view "$PR" --json number,title,state >/dev/null 2>&1; then
+if ! gh pr view "$PR" "${GH_PR_REPO[@]}" --json number,title,state >/dev/null 2>&1; then
   echo "Error: no PR #$PR in $REPO_SLUG (or no permission)." >&2
   echo "If the PR is on another fork or upstream repo, pass the repo on the command line" >&2
   echo "(recommended with npm so the repo is not lost):" >&2
@@ -97,9 +99,9 @@ if ! gh "${GH_R[@]}" pr view "$PR" --json number,title,state >/dev/null 2>&1; th
   exit 1
 fi
 
-DEFAULT_BRANCH="$(gh "${GH_R[@]}" repo view --json defaultBranchRef -q .defaultBranchRef.name)"
+DEFAULT_BRANCH="$(gh repo view "${GH_REPO_VIEW[@]}" --json defaultBranchRef -q .defaultBranchRef.name)"
 echo "Merging PR #$PR into $DEFAULT_BRANCH ($METHOD)..."
-gh "${GH_R[@]}" pr merge "$PR" "--$METHOD"
+gh pr merge "$PR" "${GH_PR_REPO[@]}" "--$METHOD"
 
 echo "Updating local $DEFAULT_BRANCH..."
 git fetch origin
