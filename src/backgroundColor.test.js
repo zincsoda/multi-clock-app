@@ -1,20 +1,20 @@
 import fs from 'fs';
 import path from 'path';
 
-const EXPECTED_HEX = '#B8860B';
+const EXPECTED_HEX = '#2d1b4e';
 const expectedLower = EXPECTED_HEX.toLowerCase();
 
 describe('app background color', () => {
   test('App.css uses the canonical background on the shell', () => {
     const appCss = fs.readFileSync(path.join(__dirname, 'App.css'), 'utf8');
     expect(appCss.toLowerCase()).toContain(expectedLower);
-    expect(appCss).toMatch(/background(?:-color)?:\s*#B8860B\b/i);
+    expect(appCss).toMatch(/background(?:-color)?:\s*#2d1b4e\b/i);
     expect(appCss.toLowerCase()).not.toContain('#00468b');
   });
 
   test('index.css applies the color to html, body, and #root', () => {
     const indexCss = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8');
-    const occurrences = indexCss.match(/#b8860b/gi) ?? [];
+    const occurrences = indexCss.match(/#2d1b4e/gi) ?? [];
     expect(occurrences.length).toBeGreaterThanOrEqual(6);
     expect(indexCss.toLowerCase()).not.toContain('#00468b');
   });
