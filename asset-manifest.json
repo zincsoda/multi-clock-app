@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/multi-clock-app/static/css/main.30ce7af1.css",
+    "main.css": "/multi-clock-app/static/css/main.4c527f26.css",
     "main.js": "/multi-clock-app/static/js/main.66af574b.js",
     "index.html": "/multi-clock-app/index.html",
-    "main.30ce7af1.css.map": "/multi-clock-app/static/css/main.30ce7af1.css.map",
+    "main.4c527f26.css.map": "/multi-clock-app/static/css/main.4c527f26.css.map",
     "main.66af574b.js.map": "/multi-clock-app/static/js/main.66af574b.js.map"
   },
   "entrypoints": [
-    "static/css/main.30ce7af1.css",
+    "static/css/main.4c527f26.css",
     "static/js/main.66af574b.js"
   ]
 }
