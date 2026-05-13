@@ -28,6 +28,52 @@
   text-align: right;
 }
 
+.clock-reading-toggle {
+  appearance: none;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  text-align: inherit;
+  font: inherit;
+  color: inherit;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.clock-reading-toggle:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.clock-analog-svg {
+  display: block;
+  width: clamp(5rem, 18vw, 9rem);
+  height: clamp(5rem, 18vw, 9rem);
+  vertical-align: middle;
+}
+
+.clock-analog-hand-hour {
+  stroke-width: 3.25;
+}
+
+.clock-analog-hand-minute {
+  stroke-width: 2;
+}
+
+.clock-analog-hand-second {
+  stroke-width: 1;
+  opacity: 0.92;
+}
+
+.clock-analog-hand,
+.clock-analog-cap {
+  stroke: currentColor;
+  fill: currentColor;
+}
+
 .clock-city {
   font-size: clamp(1.3rem, 4vw, 2.6rem);
   font-weight: 700;
@@ -79,6 +125,30 @@
   color: #ff00ff;
 }
 
+.clock-card:nth-child(1) .clock-reading-toggle {
+  color: #ff0000;
+}
+
+.clock-card:nth-child(2) .clock-reading-toggle {
+  color: #00ff00;
+}
+
+.clock-card:nth-child(3) .clock-reading-toggle {
+  color: #0080ff;
+}
+
+.clock-card:nth-child(4) .clock-reading-toggle {
+  color: #ffaa00;
+}
+
+.clock-card:nth-child(5) .clock-reading-toggle {
+  color: #00ffff;
+}
+
+.clock-card:nth-child(6) .clock-reading-toggle {
+  color: #ff00ff;
+}
+
 .clock-date {
   font-size: clamp(0.85rem, 1.8vw, 1.15rem);
   color: rgba(255, 255, 255, 0.4);
@@ -110,6 +180,11 @@
 
   .clock-time {
     font-size: clamp(1.9rem, 10vw, 3.5rem);
+  }
+
+  .clock-analog-svg {
+    width: clamp(4.75rem, 28vw, 7.5rem);
+    height: clamp(4.75rem, 28vw, 7.5rem);
   }
 
   .clock-date {
