@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import AppFooter from "./components/AppFooter";
 import ReloadPrompt from "./components/ReloadPrompt";
+import { getBuildMetadata } from "./buildMetadata";
 import Clock from "./Clock";
 import "./App.css";
 
@@ -24,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <>
+    <div className="app-shell">
       <main className="app-container" aria-label="World clocks">
         <section className="clock-list">
           {clocks.map((c) => (
@@ -32,8 +34,9 @@ function App() {
           ))}
         </section>
       </main>
+      <AppFooter {...getBuildMetadata()} />
       <ReloadPrompt />
-    </>
+    </div>
   );
 }
 

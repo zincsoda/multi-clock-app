@@ -1,3 +1,4 @@
+import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -12,10 +13,31 @@ const manifest = JSON.parse(
   readFileSync(join(__dirname, "public", "manifest.json"), "utf8")
 );
 
+function gitCommitCount() {
+  try {
+    const out = execSync("git rev-list --count HEAD", {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return out.trim() || "0";
+  } catch {
+    return "0";
+  }
+}
+
+/** Injected at dev/build time; version is total reachable commits (git rev-list --count). */
+const appBuildMetadata = {
+  commitCount: gitCommitCount(),
+  deployedAtIso: new Date().toISOString(),
+};
+
 // https://vitejs.dev/config/
 // PWA: prompt-based updates + cleanup stale caches (GitHub Pages has no Cache-Control).
 export default defineConfig({
   base: "/multi-clock-app/",
+  define: {
+    __APP_BUILD_METADATA__: JSON.stringify(appBuildMetadata),
+  },
   build: {
     outDir: "build",
   },

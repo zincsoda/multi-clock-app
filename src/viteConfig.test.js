@@ -12,4 +12,10 @@ describe("Vite build output", () => {
     expect(raw).not.toMatch(/entryFileNames\s*:/);
     expect(raw).not.toMatch(/assetFileNames\s*:/);
   });
+
+  test("injects git commit count and deploy time for the app footer", () => {
+    const raw = readFileSync(join(__dirname, "..", "vite.config.js"), "utf8");
+    expect(raw).toContain("git rev-list --count");
+    expect(raw).toContain("__APP_BUILD_METADATA__");
+  });
 });

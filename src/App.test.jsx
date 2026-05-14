@@ -2,7 +2,15 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { render, screen } from "@testing-library/react";
+import { vi } from "vitest";
 import App from "./App";
+
+vi.mock("./buildMetadata", () => ({
+  getBuildMetadata: () => ({
+    commitCount: "42",
+    deployedAtIso: "2020-06-15T14:30:00.000Z",
+  }),
+}));
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -69,4 +77,19 @@ test("lists Jakarta immediately after Dublin", () => {
   );
   expect(dublinIdx).toBeGreaterThanOrEqual(0);
   expect(cityHeadings[dublinIdx + 1]).toHaveTextContent("Jakarta");
+});
+
+test("shows build metadata in the footer", () => {
+  render(<App />);
+
+  const footer = screen.getByRole("contentinfo", { name: /build information/i });
+  expect(footer).toBeInTheDocument();
+  expect(footer).toHaveTextContent("Version");
+  expect(footer).toHaveTextContent("42");
+  expect(footer).toHaveTextContent(/Last deployed/i);
+
+  expect(screen.getByRole("time")).toHaveAttribute(
+    "dateTime",
+    "2020-06-15T14:30:00.000Z"
+  );
 });
