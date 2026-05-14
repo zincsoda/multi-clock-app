@@ -1,5 +1,18 @@
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { render, screen } from "@testing-library/react";
 import App from "./App";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+beforeAll(() => {
+  const cssPath = path.join(__dirname, "App.css");
+  const style = document.createElement("style");
+  style.dataset.testCss = "app-shell";
+  style.textContent = fs.readFileSync(cssPath, "utf8");
+  document.head.appendChild(style);
+});
 
 test("renders the clock cities", () => {
   render(<App />);
@@ -8,6 +21,12 @@ test("renders the clock cities", () => {
   expect(screen.getByText("New York")).toBeInTheDocument();
   expect(screen.getByText("Hong Kong")).toBeInTheDocument();
   expect(screen.queryByText("Paris")).not.toBeInTheDocument();
+});
+
+test("main landmark has yellow shell background once styles apply", () => {
+  render(<App />);
+  const main = screen.getByRole("main", { name: /world clocks/i });
+  expect(getComputedStyle(main).backgroundColor).toBe("rgb(255, 255, 0)");
 });
 
 test("lists Hong Kong second to last", () => {

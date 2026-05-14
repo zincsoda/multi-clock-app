@@ -16,8 +16,8 @@ html {
   padding: 0 !important;
   width: 100% !important;
   min-height: 100% !important;
-  background: #0e2236 !important;
-  background-color: #0e2236 !important;
+  background: #ffff00 !important;
+  background-color: #ffff00 !important;
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
@@ -37,8 +37,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #0e2236 !important;
-  background-color: #0e2236 !important;
+  background: #ffff00 !important;
+  background-color: #ffff00 !important;
   position: relative;
   scroll-behavior: auto !important;
   scroll-snap-type: none !important;
@@ -50,8 +50,8 @@ body {
   width: 100% !important;
   min-width: 100% !important;
   min-height: 100vh !important;
-  background: #0e2236 !important;
-  background-color: #0e2236 !important;
+  background: #ffff00 !important;
+  background-color: #ffff00 !important;
   position: relative;
   overflow-x: hidden;
   scroll-snap-type: none !important;
