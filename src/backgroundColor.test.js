@@ -1,5 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** Dark navy blue shell background */
 const EXPECTED_HEX = '#0e2236';
@@ -30,7 +33,7 @@ describe('app background color', () => {
   test('previous purple signage background is not used', () => {
     const appCss = fs.readFileSync(path.join(__dirname, 'App.css'), 'utf8');
     const indexCss = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8');
-    const htmlPath = path.join(__dirname, '..', 'public', 'index.html');
+    const htmlPath = path.join(__dirname, '..', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     expect(appCss.toLowerCase()).not.toContain('#2d1b4e');
     expect(indexCss.toLowerCase()).not.toContain('#2d1b4e');
@@ -40,7 +43,7 @@ describe('app background color', () => {
   test('previous navy signage background is not used', () => {
     const appCss = fs.readFileSync(path.join(__dirname, 'App.css'), 'utf8');
     const indexCss = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8');
-    const htmlPath = path.join(__dirname, '..', 'public', 'index.html');
+    const htmlPath = path.join(__dirname, '..', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     expect(appCss.toLowerCase()).not.toContain('#0d1b2a');
     expect(indexCss.toLowerCase()).not.toContain('#0d1b2a');
@@ -50,7 +53,7 @@ describe('app background color', () => {
   test('orange signage background is not used', () => {
     const appCss = fs.readFileSync(path.join(__dirname, 'App.css'), 'utf8');
     const indexCss = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8');
-    const htmlPath = path.join(__dirname, '..', 'public', 'index.html');
+    const htmlPath = path.join(__dirname, '..', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     const manifestPath = path.join(__dirname, '..', 'public', 'manifest.json');
     const manifest = fs.readFileSync(manifestPath, 'utf8');
@@ -60,8 +63,8 @@ describe('app background color', () => {
     expect(manifest.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
   });
 
-  test('public index.html uses the color for theme-color and inline fallbacks', () => {
-    const htmlPath = path.join(__dirname, '..', 'public', 'index.html');
+  test('root index.html uses the color for theme-color and inline fallbacks', () => {
+    const htmlPath = path.join(__dirname, '..', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     expect(html).toContain(`content="${EXPECTED_HEX}"`);
     expect(html.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
@@ -83,9 +86,9 @@ describe('app background color', () => {
     expect(raw).not.toContain('#00468b');
   });
 
-  test('App.js imports App.css so the shell class receives bundled backgrounds', () => {
-    const appJs = fs.readFileSync(path.join(__dirname, 'App.js'), 'utf8');
+  test("App.jsx imports App.css so the shell class receives bundled backgrounds", () => {
+    const appJs = fs.readFileSync(path.join(__dirname, "App.jsx"), "utf8");
     expect(appJs).toContain('"./App.css"');
-    expect(appJs).toContain('app-container');
+    expect(appJs).toContain("app-container");
   });
 });
