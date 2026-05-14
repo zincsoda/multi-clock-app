@@ -17,6 +17,13 @@ test('lists Hong Kong second to last', () => {
   expect(cityHeadings[cityHeadings.length - 1]).toHaveTextContent('Tokyo');
 });
 
+test('shell landmark uses stylesheet container class', () => {
+  render(<App />);
+
+  const main = screen.getByRole('main', { name: /world clocks/i });
+  expect(main).toHaveClass('app-container');
+});
+
 test('lists cities in fixed order', () => {
   render(<App />);
 
