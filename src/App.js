@@ -4,11 +4,11 @@ import "./App.css";
 
 const clocks = [
   { city: "L.A.", timezone: "America/Los_Angeles" },
-  { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
   { city: "New York", timezone: "America/New_York" },
   { city: "Dublin", timezone: "Europe/Dublin" },
   { city: "Paris", timezone: "Europe/Paris" },
   { city: "Jakarta", timezone: "Asia/Jakarta" },
+  { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
   { city: "Tokyo", timezone: "Asia/Tokyo" },
 ];
 
