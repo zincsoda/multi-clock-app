@@ -50,3 +50,10 @@ test('lists Paris immediately after Dublin', () => {
   expect(dublinIdx).toBeGreaterThanOrEqual(0);
   expect(cityHeadings[dublinIdx + 1]).toHaveTextContent('Paris');
 });
+
+test('Dublin and Paris use expected IANA timezones', () => {
+  render(<App />);
+
+  expect(screen.getByText('Europe/Dublin')).toBeInTheDocument();
+  expect(screen.getByText('Europe/Paris')).toBeInTheDocument();
+});
