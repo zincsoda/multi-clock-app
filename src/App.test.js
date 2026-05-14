@@ -1,5 +1,12 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App, { CLOCKS } from './App';
+
+test('configures Hong Kong as the second clock', () => {
+  expect(CLOCKS[1]).toMatchObject({
+    city: 'Hong Kong',
+    timezone: 'Asia/Hong_Kong',
+  });
+});
 
 test('renders the clock cities', () => {
   render(<App />);
