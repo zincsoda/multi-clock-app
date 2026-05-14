@@ -7,7 +7,7 @@ test('renders the clock cities', () => {
   expect(screen.getByText('L.A.')).toBeInTheDocument();
   expect(screen.getByText('New York')).toBeInTheDocument();
   expect(screen.getByText('Hong Kong')).toBeInTheDocument();
-  expect(screen.getByText('Paris')).toBeInTheDocument();
+  expect(screen.queryByText('Paris')).not.toBeInTheDocument();
 });
 
 test('lists Hong Kong second to last', () => {
@@ -35,14 +35,13 @@ test('lists cities in fixed order', () => {
     'L.A.',
     'New York',
     'Dublin',
-    'Paris',
     'Jakarta',
     'Hong Kong',
     'Tokyo',
   ]);
 });
 
-test('lists Paris immediately after Dublin', () => {
+test('lists Jakarta immediately after Dublin', () => {
   render(<App />);
 
   const cityHeadings = screen.getAllByRole('heading', { level: 2 });
@@ -50,5 +49,5 @@ test('lists Paris immediately after Dublin', () => {
     el.textContent.includes('Dublin')
   );
   expect(dublinIdx).toBeGreaterThanOrEqual(0);
-  expect(cityHeadings[dublinIdx + 1]).toHaveTextContent('Paris');
+  expect(cityHeadings[dublinIdx + 1]).toHaveTextContent('Jakarta');
 });
