@@ -1,7 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 
-const EXPECTED_HEX = '#0d1b2a';
+/** CSS named colour Orange (https://www.w3.org/TR/css-color-4/#named-colors) */
+const EXPECTED_HEX = '#ffa500';
 const expectedLower = EXPECTED_HEX.toLowerCase();
 
 describe('app background color', () => {
@@ -30,6 +31,16 @@ describe('app background color', () => {
     expect(appCss.toLowerCase()).not.toContain('#2d1b4e');
     expect(indexCss.toLowerCase()).not.toContain('#2d1b4e');
     expect(html.toLowerCase()).not.toContain('#2d1b4e');
+  });
+
+  test('previous navy signage background is not used', () => {
+    const appCss = fs.readFileSync(path.join(__dirname, 'App.css'), 'utf8');
+    const indexCss = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8');
+    const htmlPath = path.join(__dirname, '..', 'public', 'index.html');
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    expect(appCss.toLowerCase()).not.toContain('#0d1b2a');
+    expect(indexCss.toLowerCase()).not.toContain('#0d1b2a');
+    expect(html.toLowerCase()).not.toContain('#0d1b2a');
   });
 
   test('public index.html uses the color for theme-color and inline fallbacks', () => {
