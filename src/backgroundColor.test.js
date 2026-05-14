@@ -4,11 +4,14 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-/** Dark navy blue shell background */
-const EXPECTED_HEX = '#0e2236';
+/** Yellow shell background (#ffff00, CSS keyword `yellow`) */
+const EXPECTED_HEX = '#ffff00';
 const expectedLower = EXPECTED_HEX.toLowerCase();
 
 const ORANGE_SIGNAGE_HEX = '#ffa500';
+
+/** Former navy signage shell (must not linger on HTML/CSS shell surfaces) */
+const LEGACY_SHELL_NAVY_HEX = '#0e2236';
 
 describe('app background color', () => {
   test('App.css uses the canonical background on the shell', () => {
@@ -19,6 +22,7 @@ describe('app background color', () => {
     );
     expect(appCss.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(appCss.toLowerCase()).not.toContain('#00468b');
+    expect(appCss.toLowerCase()).not.toContain(LEGACY_SHELL_NAVY_HEX);
   });
 
   test('index.css applies the color to html, body, and #root', () => {
@@ -28,6 +32,7 @@ describe('app background color', () => {
     expect(count).toBeGreaterThanOrEqual(6);
     expect(indexCss.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(indexCss.toLowerCase()).not.toContain('#00468b');
+    expect(indexCss.toLowerCase()).not.toContain(LEGACY_SHELL_NAVY_HEX);
   });
 
   test('previous purple signage background is not used', () => {
@@ -70,6 +75,14 @@ describe('app background color', () => {
     expect(html.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(html.toLowerCase()).not.toContain('#00468b');
     expect(html.toLowerCase()).not.toContain('#8b3a00');
+    expect(html.toLowerCase()).not.toContain(LEGACY_SHELL_NAVY_HEX);
+  });
+
+  test('public/index.html mirrors shell background and theme-color', () => {
+    const htmlPath = path.join(__dirname, '..', 'public', 'index.html');
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    expect(html).toContain(`content="${EXPECTED_HEX}"`);
+    expect(html.toLowerCase()).not.toContain(LEGACY_SHELL_NAVY_HEX);
   });
 
   test('web app manifest theme and background_color match', () => {
@@ -84,6 +97,7 @@ describe('app background color', () => {
     const raw = fs.readFileSync(manifestPath, 'utf8').toLowerCase();
     expect(raw).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(raw).not.toContain('#00468b');
+    expect(raw).not.toContain(LEGACY_SHELL_NAVY_HEX);
   });
 
   test("App.jsx imports App.css so the shell class receives bundled backgrounds", () => {
