@@ -22,11 +22,11 @@ test('shows digital time and date until the reading is toggled', () => {
 
 test('clicking the digital clock shows an analogue face and toggles back', async () => {
   render(
-    <Clock city="Paris" timezone="Europe/Paris" now={new Date(fixedUtc)} />
+    <Clock city="Dublin" timezone="Europe/Dublin" now={new Date(fixedUtc)} />
   );
 
   const toggle = screen.getByRole('button', {
-    name: /Show analogue clock for Paris/i,
+    name: /Show analogue clock for Dublin/i,
   });
   await userEvent.click(toggle);
 
@@ -34,7 +34,7 @@ test('clicking the digital clock shows an analogue face and toggles back', async
   expect(toggle).toHaveAttribute('aria-pressed', 'true');
 
   await userEvent.click(
-    screen.getByRole('button', { name: /Show digital time for Paris/i })
+    screen.getByRole('button', { name: /Show digital time for Dublin/i })
   );
 
   expect(document.querySelector('.clock-analog-svg')).not.toBeInTheDocument();

@@ -100,33 +100,28 @@
   color: #ff0000;
 }
 
-/* Green LED - Hong Kong */
+/* Green LED - New York */
 .clock-card:nth-child(2) .clock-time {
   color: #00ff00;
 }
 
-/* Blue LED - New York */
+/* Blue LED - Dublin */
 .clock-card:nth-child(3) .clock-time {
   color: #0080ff;
 }
 
-/* Amber/Yellow LED - Dublin */
+/* Soft white - Jakarta */
 .clock-card:nth-child(4) .clock-time {
-  color: #ffaa00;
-}
-
-/* Soft white - Paris */
-.clock-card:nth-child(5) .clock-time {
   color: #eaeaea;
 }
 
-/* Cyan LED - Jakarta */
-.clock-card:nth-child(6) .clock-time {
+/* Cyan LED - Hong Kong */
+.clock-card:nth-child(5) .clock-time {
   color: #00ffff;
 }
 
 /* Magenta/Pink LED - Tokyo */
-.clock-card:nth-child(7) .clock-time {
+.clock-card:nth-child(6) .clock-time {
   color: #ff00ff;
 }
 
@@ -143,18 +138,14 @@
 }
 
 .clock-card:nth-child(4) .clock-reading-toggle {
-  color: #ffaa00;
-}
-
-.clock-card:nth-child(5) .clock-reading-toggle {
   color: #eaeaea;
 }
 
-.clock-card:nth-child(6) .clock-reading-toggle {
+.clock-card:nth-child(5) .clock-reading-toggle {
   color: #00ffff;
 }
 
-.clock-card:nth-child(7) .clock-reading-toggle {
+.clock-card:nth-child(6) .clock-reading-toggle {
   color: #ff00ff;
 }
 
