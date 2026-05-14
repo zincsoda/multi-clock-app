@@ -4,9 +4,12 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-/** Yellow shell background (#ffff00, CSS keyword `yellow`) */
-const EXPECTED_HEX = '#ffff00';
+/** Dark navy shell background */
+const EXPECTED_HEX = '#0a1628';
 const expectedLower = EXPECTED_HEX.toLowerCase();
+
+/** Former yellow signage shell (must not return on HTML/CSS surfaces) */
+const LEGACY_SHELL_YELLOW_HEX = '#ffff00';
 
 const ORANGE_SIGNAGE_HEX = '#ffa500';
 
@@ -20,6 +23,7 @@ describe('app background color', () => {
     expect(appCss).toMatch(
       new RegExp(`background(?:-color)?:\\s*${EXPECTED_HEX}\\b`, 'i')
     );
+    expect(appCss.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
     expect(appCss.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(appCss.toLowerCase()).not.toContain('#00468b');
     expect(appCss.toLowerCase()).not.toContain(LEGACY_SHELL_NAVY_HEX);
@@ -30,6 +34,7 @@ describe('app background color', () => {
     const count =
       indexCss.toLowerCase().split(expectedLower).length - 1;
     expect(count).toBeGreaterThanOrEqual(6);
+    expect(indexCss.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
     expect(indexCss.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(indexCss.toLowerCase()).not.toContain('#00468b');
     expect(indexCss.toLowerCase()).not.toContain(LEGACY_SHELL_NAVY_HEX);
@@ -55,6 +60,19 @@ describe('app background color', () => {
     expect(html.toLowerCase()).not.toContain('#0d1b2a');
   });
 
+  test('yellow signage background is not used', () => {
+    const appCss = fs.readFileSync(path.join(__dirname, 'App.css'), 'utf8');
+    const indexCss = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8');
+    const htmlPath = path.join(__dirname, '..', 'index.html');
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    const manifestPath = path.join(__dirname, '..', 'public', 'manifest.json');
+    const manifest = fs.readFileSync(manifestPath, 'utf8');
+    expect(appCss.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
+    expect(indexCss.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
+    expect(html.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
+    expect(manifest.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
+  });
+
   test('orange signage background is not used', () => {
     const appCss = fs.readFileSync(path.join(__dirname, 'App.css'), 'utf8');
     const indexCss = fs.readFileSync(path.join(__dirname, 'index.css'), 'utf8');
@@ -72,6 +90,7 @@ describe('app background color', () => {
     const htmlPath = path.join(__dirname, '..', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     expect(html).toContain(`content="${EXPECTED_HEX}"`);
+    expect(html.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
     expect(html.toLowerCase()).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(html.toLowerCase()).not.toContain('#00468b');
     expect(html.toLowerCase()).not.toContain('#8b3a00');
@@ -82,6 +101,7 @@ describe('app background color', () => {
     const htmlPath = path.join(__dirname, '..', 'public', 'index.html');
     const html = fs.readFileSync(htmlPath, 'utf8');
     expect(html).toContain(`content="${EXPECTED_HEX}"`);
+    expect(html.toLowerCase()).not.toContain(LEGACY_SHELL_YELLOW_HEX);
     expect(html.toLowerCase()).not.toContain(LEGACY_SHELL_NAVY_HEX);
   });
 
@@ -92,9 +112,10 @@ describe('app background color', () => {
     expect(manifest.background_color.toLowerCase()).toBe(expectedLower);
   });
 
-  test('manifest does not reference orange or the previous blue theme', () => {
+  test('manifest does not reference legacy shell themes', () => {
     const manifestPath = path.join(__dirname, '..', 'public', 'manifest.json');
     const raw = fs.readFileSync(manifestPath, 'utf8').toLowerCase();
+    expect(raw).not.toContain(LEGACY_SHELL_YELLOW_HEX);
     expect(raw).not.toContain(ORANGE_SIGNAGE_HEX);
     expect(raw).not.toContain('#00468b');
     expect(raw).not.toContain(LEGACY_SHELL_NAVY_HEX);

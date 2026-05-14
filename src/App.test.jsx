@@ -23,10 +23,10 @@ test("renders the clock cities", () => {
   expect(screen.queryByText("Paris")).not.toBeInTheDocument();
 });
 
-test("main landmark has yellow shell background once styles apply", () => {
+test("main landmark has dark navy shell background once styles apply", () => {
   render(<App />);
   const main = screen.getByRole("main", { name: /world clocks/i });
-  expect(getComputedStyle(main).backgroundColor).toBe("rgb(255, 255, 0)");
+  expect(getComputedStyle(main).backgroundColor).toBe("rgb(10, 22, 40)");
 });
 
 test("lists Hong Kong second to last", () => {
