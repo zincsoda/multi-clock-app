@@ -1,4 +1,3 @@
-import { execSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,26 +7,16 @@ import { configDefaults } from "vitest/config";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
 
+import { getGitCommitCount } from "./gitCommitCount.js";
+
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const manifest = JSON.parse(
   readFileSync(join(__dirname, "public", "manifest.json"), "utf8")
 );
 
-function gitCommitCount() {
-  try {
-    const out = execSync("git rev-list --count HEAD", {
-      encoding: "utf8",
-      stdio: ["ignore", "pipe", "ignore"],
-    });
-    return out.trim() || "0";
-  } catch {
-    return "0";
-  }
-}
-
 /** Injected at dev/build time; version is total reachable commits (git rev-list --count). */
 const appBuildMetadata = {
-  commitCount: gitCommitCount(),
+  commitCount: getGitCommitCount(),
   deployedAtIso: new Date().toISOString(),
 };
 
@@ -56,7 +45,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./src/setupTests.js",
-    include: ["src/**/*.{test,spec}.{js,jsx}"],
+    include: ["src/**/*.{test,spec}.{js,jsx}", "gitCommitCount.test.js"],
     exclude: [
       ...configDefaults.exclude,
       "src/App.test.js",
