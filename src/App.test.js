@@ -10,12 +10,14 @@ test('renders the clock cities', () => {
   expect(screen.getByText('Paris')).toBeInTheDocument();
 });
 
-test('lists Hong Kong second', () => {
+test('lists Hong Kong second to last', () => {
   render(<App />);
 
   const cityHeadings = screen.getAllByRole('heading', { level: 2 });
-  expect(cityHeadings[0]).toHaveTextContent('L.A.');
-  expect(cityHeadings[1]).toHaveTextContent('Hong Kong');
+  expect(cityHeadings[cityHeadings.length - 2]).toHaveTextContent(
+    'Hong Kong'
+  );
+  expect(cityHeadings[cityHeadings.length - 1]).toHaveTextContent('Tokyo');
 });
 
 test('shell landmark uses stylesheet container class', () => {
@@ -31,11 +33,11 @@ test('lists cities in fixed order', () => {
   const cityHeadings = screen.getAllByRole('heading', { level: 2 });
   expect(cityHeadings.map((el) => el.textContent)).toEqual([
     'L.A.',
-    'Hong Kong',
     'New York',
     'Dublin',
     'Paris',
     'Jakarta',
+    'Hong Kong',
     'Tokyo',
   ]);
 });
