@@ -62,13 +62,13 @@ test("lists cities in fixed order", () => {
     "L.A.",
     "New York",
     "Dublin",
-    "Jakarta",
+    "Kuala Lumpur",
     "Hong Kong",
     "Tokyo",
   ]);
 });
 
-test("lists Jakarta immediately after Dublin", () => {
+test("lists Kuala Lumpur immediately after Dublin", () => {
   render(<App />);
 
   const cityHeadings = screen.getAllByRole("heading", { level: 2 });
@@ -76,7 +76,17 @@ test("lists Jakarta immediately after Dublin", () => {
     el.textContent.includes("Dublin")
   );
   expect(dublinIdx).toBeGreaterThanOrEqual(0);
-  expect(cityHeadings[dublinIdx + 1]).toHaveTextContent("Jakarta");
+  expect(cityHeadings[dublinIdx + 1]).toHaveTextContent("Kuala Lumpur");
+});
+
+test("App.jsx uses Kuala Lumpur with Asia/Kuala_Lumpur timezone", () => {
+  const appSrc = fs.readFileSync(
+    path.join(__dirname, "App.jsx"),
+    "utf8"
+  );
+  expect(appSrc).toContain('"Kuala Lumpur"');
+  expect(appSrc).toContain('"Asia/Kuala_Lumpur"');
+  expect(appSrc).not.toContain("Asia/Jakarta");
 });
 
 test("shows build metadata in the footer", () => {

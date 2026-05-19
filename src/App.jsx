@@ -9,7 +9,7 @@ const clocks = [
   { city: "L.A.", timezone: "America/Los_Angeles" },
   { city: "New York", timezone: "America/New_York" },
   { city: "Dublin", timezone: "Europe/Dublin" },
-  { city: "Jakarta", timezone: "Asia/Jakarta" },
+  { city: "Kuala Lumpur", timezone: "Asia/Kuala_Lumpur" },
   { city: "Hong Kong", timezone: "Asia/Hong_Kong" },
   { city: "Tokyo", timezone: "Asia/Tokyo" },
 ];
