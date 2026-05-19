@@ -28,6 +28,7 @@ test("renders the clock cities", () => {
   expect(screen.getByText("L.A.")).toBeInTheDocument();
   expect(screen.getByText("New York")).toBeInTheDocument();
   expect(screen.getByText("Hong Kong")).toBeInTheDocument();
+  expect(screen.getByText("Jakarta")).toBeInTheDocument();
   expect(screen.queryByText("Paris")).not.toBeInTheDocument();
 });
 
@@ -62,13 +63,13 @@ test("lists cities in fixed order", () => {
     "L.A.",
     "New York",
     "Dublin",
-    "Kuala Lumpur",
+    "Jakarta",
     "Hong Kong",
     "Tokyo",
   ]);
 });
 
-test("lists Kuala Lumpur immediately after Dublin", () => {
+test("lists Jakarta immediately after Dublin", () => {
   render(<App />);
 
   const cityHeadings = screen.getAllByRole("heading", { level: 2 });
@@ -76,17 +77,17 @@ test("lists Kuala Lumpur immediately after Dublin", () => {
     el.textContent.includes("Dublin")
   );
   expect(dublinIdx).toBeGreaterThanOrEqual(0);
-  expect(cityHeadings[dublinIdx + 1]).toHaveTextContent("Kuala Lumpur");
+  expect(cityHeadings[dublinIdx + 1]).toHaveTextContent("Jakarta");
 });
 
-test("App.jsx uses Kuala Lumpur with Asia/Kuala_Lumpur timezone", () => {
+test("App.jsx uses Jakarta with Asia/Jakarta timezone", () => {
   const appSrc = fs.readFileSync(
     path.join(__dirname, "App.jsx"),
     "utf8"
   );
-  expect(appSrc).toContain('"Kuala Lumpur"');
-  expect(appSrc).toContain('"Asia/Kuala_Lumpur"');
-  expect(appSrc).not.toContain("Asia/Jakarta");
+  expect(appSrc).toContain('"Jakarta"');
+  expect(appSrc).toContain('"Asia/Jakarta"');
+  expect(appSrc).not.toContain("Asia/Kuala_Lumpur");
 });
 
 test("shows build metadata in the footer", () => {

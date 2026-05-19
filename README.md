@@ -6,7 +6,7 @@ A React application that displays multiple clocks for different timezones around
 ## Features
 
 - View multiple clocks simultaneously
-- Displays time for: L.A., New York, Dublin, Kuala Lumpur, Hong Kong, and Tokyo
+- Displays time for: L.A., New York, Dublin, Jakarta, Hong Kong, and Tokyo
 - Real-time updates
 
 ## Getting Started
